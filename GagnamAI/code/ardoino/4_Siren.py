@@ -2,7 +2,7 @@ from jikko.jikko import *
 
 jk = Pyjikko()
 
-PORT = "COM4"
+PORT = "COM3"
 
 jk.serial_connect(PORT)
 jk.start()
