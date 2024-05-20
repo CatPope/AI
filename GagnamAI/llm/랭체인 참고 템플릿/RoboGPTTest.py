@@ -92,41 +92,41 @@ class colors:  # You may need to change color settings
     BLUE = "\033[34m"
 
 
-print(f"Initializing Jikko...")
-jk = Pyjikko()
-PORT = 'COM3'
-jk.serial_connect(PORT)
-jk.start()
-print(f"Done.")
+# print(f"Initializing Jikko...")
+# jk = Pyjikko()
+# PORT = 'COM3'
+# jk.serial_connect(PORT)
+# jk.start()
+# print(f"Done.")
 
-with open(args.prompt, "r", encoding='UTF8') as f:
-    prompt = f.read()
+# with open(args.prompt, "r", encoding='UTF8') as f:
+#     prompt = f.read()
 
-ask(prompt)
-print("Welcome to the Jikko chatbot! I am ready to help you with your Jikko questions and commands.")
+# ask(prompt)
+# print("Welcome to the Jikko chatbot! I am ready to help you with your Jikko questions and commands.")
 
-while True:
-    question = input(colors.YELLOW + "Jikko> " + colors.ENDC)
+# while True:
+#     question = input(colors.YELLOW + "Jikko> " + colors.ENDC)
 
-    if question == "!quit" or question == "!exit":
-        break
+#     if question == "!quit" or question == "!exit":
+#         break
 
-    if question == "!clear":
-        os.system("cls")
-        continue
+#     if question == "!clear":
+#         os.system("cls")
+#         continue
 
-    response = ask(question)
+#     response = ask(question)
 
-    light, temp, humi, soil = 0, 0, 0, 0
+#     light, temp, humi, soil = 0, 0, 0, 0
 
-    print(f"\n{response}\n")
+#     print(f"\n{response}\n")
 
-    code = extract_python_code(response)
-    if code is not None:
-        print("Please wait while I run the code in Jikko...")
-        exec(extract_python_code(response))
-        print("Done!\n")
+#     code = extract_python_code(response)
+#     if code is not None:
+#         print("Please wait while I run the code in Jikko...")
+#         exec(extract_python_code(response))
+#         print("Done!\n")
 
-        # 이 아래 스마트팜 값에 맞춰 작동하는 기능 작성하세요
-        if light > 600:
-            print('어두운 상태')
+#         # 이 아래 스마트팜 값에 맞춰 작동하는 기능 작성하세요
+#         if light > 600:
+#             print('어두운 상태')
