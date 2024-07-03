@@ -71,20 +71,20 @@ while cap.isOpened():
             ret, results, neighbours, dist = knn.findNearest(data, 3) # k가 3일 때의 값 구함
             idx = int(results[0][0])
 
-            # if idx == 11:
-            #     x1, y1 = tuple((joint.min(axis=0)[:2] * [img.shape[1], img.shape[0]] * 0.95).astype(int))
-            #     x2, y2 = tuple((joint.max(axis=0)[:2] * [img.shape[1], img.shape[0]] * 1.05).astype(int))
+            if idx == 11:
+                x1, y1 = tuple((joint.min(axis=0)[:2] * [img.shape[1], img.shape[0]] * 0.95).astype(int))
+                x2, y2 = tuple((joint.max(axis=0)[:2] * [img.shape[1], img.shape[0]] * 1.05).astype(int))
 
-            #     # # 좌표가 잘 구해졌는데 사각형 그려보기
-            #     # cv2.rectangle(img, pt1=(x1, y1), pt2=(x2, y2), color=255, thickness=2)
+                # # 좌표가 잘 구해졌는데 사각형 그려보기
+                # cv2.rectangle(img, pt1=(x1, y1), pt2=(x2, y2), color=255, thickness=2)
 
-            #     fy_img = img[y1:y2, x1:x2].copy()
-            #     fy_img = cv2.resize(fy_img, dsize=None, fx=0.05, fy=0.05, interpolation=cv2.INTER_NEAREST) # 이미지 크기를 0.05배로 (작게) 만듬듬
-            #     fy_img = cv2.resize(fy_img, dsize=(x2 - x1, y2 - y1), interpolation=cv2.INTER_NEAREST)
+                fy_img = img[y1:y2, x1:x2].copy()
+                fy_img = cv2.resize(fy_img, dsize=None, fx=0.05, fy=0.05, interpolation=cv2.INTER_NEAREST) # 이미지 크기를 0.05배로 (작게) 만듬듬
+                fy_img = cv2.resize(fy_img, dsize=(x2 - x1, y2 - y1), interpolation=cv2.INTER_NEAREST)
 
-            #     img[y1:y2, x1:x2] = fy_img
+                img[y1:y2, x1:x2] = fy_img
 
-            # mp_drawing.draw_landmarks(img, res, mp_hands.HAND_CONNECTIONS)
+            mp_drawing.draw_landmarks(img, res, mp_hands.HAND_CONNECTIONS)
 
     cv2.imshow('Filter', img)
     if cv2.waitKey(1) == ord('q'):
