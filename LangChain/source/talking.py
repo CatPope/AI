@@ -5,13 +5,17 @@ import dotenv
 import gtts
 import playsound as ps
 import speech_recognition as sr
+import time
 
 
 class Talking:
     def __init__(self):
+        self.stop = False
+
         parser = argparse.ArgumentParser()
-        parser.add_argument("--sysprompt", type=str, default=r"C:\Users\USER\Documents\GitHub\AI\LangChain\data\system_prompts")
-        args = parser.parse_args()
+        parser.add_argument("--sysprompt", type=str, default="./data/system_prompts/robo_basic.txt")
+        parser.add_argument("--voice", type=str, default="./data/sound/voice.mp3")
+        self.args = parser.parse_args()
 
         print("Initializing ChatGPT...")
 
@@ -19,25 +23,17 @@ class Talking:
         api_key = os.getenv('OPENAI_API_KEY')
         self.client = OpenAI(api_key = api_key)
 
-
-        with open(args.sysprompt, "r", encoding='utf-8') as f:
+        with open(self.args.sysprompt, "r", encoding='UTF-8') as f:
             sysprompt = f.read()
-
 
         self.chat_history = [
             {
                 "role": "system",
                 "content": sysprompt
-            },
-            {
-                "role": "user",
-                "content": "오늘 계단에서 굴렀어"
-            },
-            {
-                "role": "assistant",
-                "content": "아이고... 괜찮아? 다친곳은 없어?"
             }
         ]
+
+        self.TTS("준비 됐어!")
 
 
     def ask(self, prompt):
@@ -63,71 +59,72 @@ class Talking:
 
     def TTS(self, source):
         tts = gtts.gTTS(text=source, lang='ko')
-        tts.save('./data/voice.mp3')
-        ps.playsound('./data/voice.mp3')
+        tts.save(self.args.voice)
+        try:
+            ps.playsound(self.args.voice)
+        except Exception as e:
+            print(f"installing voice...")
 
 
     def STT(self):
         recognizer = sr.Recognizer()
 
         with sr.Microphone() as source:
-            print("환경 소음 조정 중...")
+            print("환경소음 측정중...")
             recognizer.adjust_for_ambient_noise(source, duration=1)
-            print("듣기 시작...")
-
+            print("이제 말해줘...")
+            self.TTS("응?")
             try:
-                while True:
-                    # 음성을 듣고 최대 5초 동안 대기, 최대 10초 동안 듣기
-                    print("음성 대기 중...")
-                    audio = recognizer.listen(source, timeout=5, phrase_time_limit=10)
-                    
-                    # 음성을 인식하여 텍스트로 변환
-                    print("음성 인식 중...")
-                    text = recognizer.recognize_google(audio, language="ko-KR")
-                    print(f"인식된 텍스트: {text}")
-                    
-                    # 인식된 텍스트가 "a"이면 프로그램 종료
-                    if text.lower() == "a":
-                        print("사용자가 종료를 요청했습니다.")
-                        break
-                    
-
-
-            except sr.WaitTimeoutError:
-                print("음성이 시작되기를 기다리는 중 타임아웃 발생")
-                self.TTS("다시한번 말해줄래?")
+                audio_data = recognizer.listen(source, timeout=5, phrase_time_limit=5)
+                text = recognizer.recognize_google(audio_data, language="ko-KR")
+                print("음성 인식 결과:", text)
             except sr.UnknownValueError:
-                print("음성을 이해할 수 없음")
-                self.TTS("미안해. 뭐라고 이야기 하는지 모르겠어.")
+                print("죄송합니다. 음성을 인식할 수 없습니다.")
+                self.TTS("미안해. 뭐라고 하는지 모르겠어..")
+                text = ""
+            except sr.WaitTimeoutError:
+                print("인식 시간 초과")
+                self.TTS("다시한번 말해줄래?")
+                text = ""
             except sr.RequestError as e:
-                print(f"요청 오류 발생: {e}")
-                self.TTS("요청 오류 발생 삐빅")
-            except KeyboardInterrupt:
-                print("사용자에 의해 프로그램 종료")
+                print(f"음성 인식 서비스 요청에 실패했습니다: {e}")
+                text = ""
+        return text
 
 
-    class colors:  # You may need to change color settings
-        RED = "\033[31m"
-        ENDC = "\033[m"
-        GREEN = "\033[32m"
-        YELLOW = "\033[33m"
-        BLUE = "\033[34m"
+    def stop_handle(self):
+        if self.stop:
+            self.stop = False
+            self.TTS("필요하면 불러줘")
+        else:
+            self.stop = True
+
+
+    def handle_exit(self, question):
+        if question in ["잘가", "bye", "빠이", "exit"]:
+            self.stop = True
+            question = ''
+        return question
 
 
     def run(self):
-        while True:
-            question = input(self.colors.YELLOW + "강정이> " + self.colors.ENDC)
+        # 택스트 수동 입력 코드
+        question = input("나> ")
+        if question == "audio":
+            question = self.STT()
 
-            if question == "!quit" or question == "!exit":
-                break
+        # question = self.STT()
 
-            if question == "!clear":
-                os.system("cls")
-                continue
+        self.handle_exit(question)
+        if self.stop:
+            print("대화를 종료합니다.")
+            self.TTS("안녕~")
+            question = ""
 
+        if question:
             response = self.ask(question)
-
-            print(f"\n{response}\n")
+            print(f"강정이>{response}")
+            self.TTS(response)
 
 
 if __name__ == "__main__":

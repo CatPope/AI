@@ -1,0 +1,132 @@
+import os
+import argparse
+from gtts import gTTS
+from playsound import playsound
+import openai
+import speech_recognition as sr
+from dotenv import load_dotenv
+import time
+
+class Talk:
+    def __init__(self):
+        load_dotenv()
+        self.config = os.getenv('OPENAI_API_KEY')
+        
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--sysprompt", type=str, default="./system_prompts/robo_basic.txt")
+        self.args = parser.parse_args()
+        self.tts_path = os.path.join(os.getcwd(), 'voice.mp3')
+
+        print("Initializing ChatGPT...")
+        self.client = openai.OpenAI(api_key=self.config)
+
+        with open(self.args.sysprompt, "r", encoding='UTF8') as f:
+            self.sysprompt = f.read()
+
+        self.chat_history = [
+            {
+                "role": "system",
+                "content": self.sysprompt
+            }
+        ]
+
+        self.run()
+
+
+    def ask(self, prompt):
+        self.chat_history.append(
+            {
+                "role": "user",
+                "content": prompt,
+            }
+        )
+        completion = self.client.chat.completions.create(
+            model="gpt-4",
+            messages=self.chat_history,
+            temperature=1
+        )
+        response = completion.choices[0].message.content
+        self.chat_history.append(
+            {
+                "role": "assistant",
+                "content": response,
+            }
+        )
+        return response
+
+    def stt(self):
+        recognizer = sr.Recognizer()
+
+        with sr.Microphone() as source:
+            print("환경소음 측정중...")
+            recognizer.adjust_for_ambient_noise(source, duration=1)
+            print("이제 말해줘...")
+            self.tts("응?")
+            try:
+                audio_data = recognizer.listen(source, timeout=5, phrase_time_limit=5)
+                text = recognizer.recognize_google(audio_data, language="ko-KR")
+                print("음성 인식 결과:", text)
+            except sr.UnknownValueError:
+                print("죄송합니다. 음성을 인식할 수 없습니다.")
+                self.tts("미안해. 뭐라고 하는지 모르겠어..")
+                text = ""
+            except sr.WaitTimeoutError:
+                print("인식 시간 초과")
+                self.tts("다시한번 말해줄래?")
+                text = ""
+            except sr.RequestError as e:
+                print(f"음성 인식 서비스 요청에 실패했습니다: {e}")
+                text = ""
+        return text
+
+    def tts(self, response):
+        tts = gTTS(text=response, lang='ko')
+        tts.save(self.tts_path)
+        playsound(self.tts_path)
+
+    class Colors:  # You may need to change color settings
+        RED = "/033[31m"
+        ENDC = "/033[m"
+        GREEN = "/033[32m"
+        YELLOW = "/033[33m"
+        BLUE = "/033[34m"
+
+    def handle_exit(self, question, unable):
+        if question in ["잘가", "bye", "빠이"]:
+            unable = False
+            self.tts("대화를 종료합니다.")
+            question = ''
+        return question
+
+    def run(self):
+        unable = False
+        while True:
+            # question = input(self.Colors.YELLOW + "강정이> " + self.Colors.ENDC)
+
+            # if question == "audio":
+            #     question = self.stt()
+
+            question = self.stt()
+
+            print(unable)
+            self.handle_exit(question, unable)
+            if unable:
+                print("대화를 종료합니다.")
+                question = ""
+            while unable:  
+                time.sleep(1)
+                print("중단중...")
+
+            if question:
+                response = self.ask(question)
+                print(f"/n{response}/n")
+                self.tts(response)
+
+
+
+if __name__ == "__main__":
+    talk = Talk()
+    talk.run()
+    time.sleep(10)
+    talk.run().unable
+    time.sleep(10)
