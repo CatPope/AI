@@ -68,6 +68,7 @@ class Talking:
             ps.playsound(self.args.voice)
         except Exception as e:
             # print(f"installing voice...")
+            pass
 
 
     def STT(self):
@@ -106,9 +107,8 @@ class Talking:
         # 질문 수동 입력 코드
         question = input("나> ")
         if question == "audio":
+            # 질문 음성인식 코드
             question = self.STT()
-        # 질문 음성인식 코드
-        # question = self.STT()
 
         # 질문을 보고 종료할지 결정할 코드
         question = self.handle_exit(question)
@@ -124,4 +124,6 @@ class Talking:
 
 if __name__ == "__main__":
     Tk = Talking()
-    Tk.run()
+    while True:
+        response, imotion = Tk.get_response_imotion()
+        Tk.TTS(response)
