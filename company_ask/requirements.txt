@@ -1,0 +1,5 @@
+langchain-ollama==0.3.3
+langchain_community==0.3.24
+pypdf==5.5.0
+chromadb==1.0.10
+langchain-teddynote==0.3.45
