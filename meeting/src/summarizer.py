@@ -1,58 +1,61 @@
+# summarizer.py
+
+import os
+import sys
+from dotenv import load_dotenv
 from langchain_ollama import OllamaLLM
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_core.prompts.few_shot import FewShotPromptTemplate
-from langchain_teddynote import logging
-from langchain_teddynote.messages import stream_response
-from dotenv import load_dotenv
-import sys
-import os
 
-# 환경 변수 불러오기
-load_dotenv()
-# prompt 절대 경로 불러오기
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PROMPT_PATH = os.getenv("PROMPT_PATH")
-ABSOLUTE_PROMPT_PATH = os.path.join(BASE_DIR, PROMPT_PATH)
-sys.path.insert(0, ABSOLUTE_PROMPT_PATH)
 
-# prompt import
-import examples_pmpt
-import context_pmpt
-import summarys_pmpt
+class SummaryGenerator:
+    def __init__(self):
+        # 환경 변수 로드 및 경로 설정
+        load_dotenv()
+        self.base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        self.prompt_path = os.getenv("PROMPT_PATH")
+        self.absolute_prompt_path = os.path.join(self.base_dir, self.prompt_path)
+        sys.path.insert(0, self.absolute_prompt_path)
 
-# 프롬프트 저장
-examples = examples_pmpt.get_prompt()
-context = context_pmpt.get_prompt()
-summarys = summarys_pmpt.get_prompt()
+        # 모델 설정
+        self.model_name = os.getenv("STRATEGIC_LLM_BASE")
 
-# langsmith 호출
-logging.langsmith("meeting", set_enable=True)
+        # 프롬프트 모듈 import 및 구성
+        self.examples = self._load_examples()
+        self.prompt = self._build_prompt()
+        self.llm = OllamaLLM(model=self.model_name, temperature=0)
 
-# 회의록과 요약본 병합
-for i in range(len(summarys)):
-    examples[i]["answer"] = summarys[i]
+    def _load_examples(self):
+        import examples_tpl
+        import summarys_pmpt
+        examples = examples_tpl.get_tpl()
+        summarys = summarys_pmpt.get_prompt()
 
-# 추론형 llm
-strategic_llm = os.getenv("STRATEGIC_LLM_BASE")
-llm = OllamaLLM(
-    model=strategic_llm,
-    temperature=0
-)
+        for i in range(len(summarys)):
+            examples[i]["answer"] = summarys[i]
 
-# 출력 형식 지정
-example_prompt = PromptTemplate.from_template("Context:\n{context}\nAnswer:\n{answer}\n")
+        return examples
 
-# 프롬프트 구성
-prompt = FewShotPromptTemplate(
-    examples=examples,
-    example_prompt=example_prompt,
-    suffix="Context:\n{context}\nAnswer:\n",
-    input_variables=["context"],
-)
+    def _build_prompt(self):
+        example_prompt = PromptTemplate.from_template("Context:\n{context}\nAnswer:\n{answer}\n")
+        return FewShotPromptTemplate(
+            examples=self.examples,
+            example_prompt=example_prompt,
+            suffix="Context:\n{context}\nAnswer:\n",
+            input_variables=["context"],
+        )
 
-# chain 생성
-chain = prompt | llm | StrOutputParser()
+    def generate(self, full_text: str):
+        chain = self.prompt | self.llm | StrOutputParser()
+        result = chain.invoke({"context": full_text})
+        print("요약본이 작성되었습니다.")
+        return result
 
-# 결과 출력
-result = chain.invoke({"context": context})
+
+# 테스트 실행
+if __name__ == "__main__":
+    generator = SummaryGenerator()
+    summary = generator.generate("밥먹고 청소하고 자자.")
+    print("\n=== 요약 결과 ===")
+    print(summary)

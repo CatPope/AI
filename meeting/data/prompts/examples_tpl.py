@@ -107,7 +107,7 @@ UI 가이드라인 관련해서는 지난번 전달해 주신 디자인 시안 �
     }
 ]
 
-def get_prompt():
+def get_tpl():
     return _examples
 
 def get_len():
