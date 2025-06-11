@@ -3,3 +3,6 @@ langchain_community==0.3.24
 langchain_teddynote==0.3.45
 langchain-ollama==0.3.3
 secure-smtplib==0.1.1
+SpeechRecognition
+PyAudio
+reportlab

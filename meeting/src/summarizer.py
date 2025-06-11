@@ -55,6 +55,4 @@ prompt = FewShotPromptTemplate(
 chain = prompt | llm | StrOutputParser()
 
 # 결과 출력
-result = chain.stream({"context": context})
-
-stream_response(result)
+result = chain.invoke({"context": context})
