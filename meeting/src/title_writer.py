@@ -16,27 +16,28 @@ PROMPT_PATH = os.getenv("PROMPT_PATH")
 ABSOLUTE_PROMPT_PATH = os.path.join(BASE_DIR, PROMPT_PATH)
 sys.path.insert(0, ABSOLUTE_PROMPT_PATH)
 
+
 # prompt import
 import examples_pmpt
 import context_pmpt
-import summarys_pmpt
+import titles_pmpt
 
 # 프롬프트 저장
-examples = examples_pmpt.get_prompt()
 context = context_pmpt.get_prompt()
-summarys = summarys_pmpt.get_prompt()
+examples = examples_pmpt.get_prompt()
+titles = titles_pmpt.get_prompt()
 
 # langsmith 호출
 logging.langsmith("meeting", set_enable=True)
 
 # 회의록과 요약본 병합
-for i in range(len(summarys)):
-    examples[i]["answer"] = summarys[i]
+for i in range(len(titles)):
+    examples[i]["answer"] = titles[i]
 
-# 추론형 llm
-strategic_llm = os.getenv("STRATEGIC_LLM_BASE")
+# 가벼운 llm
+fast_llm = os.getenv("FAST_LLM_BASE")
 llm = OllamaLLM(
-    model=strategic_llm,
+    model=fast_llm,
     temperature=0
 )
 
