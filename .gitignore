@@ -406,3 +406,4 @@ FodyWeavers.xsd
 # End of https://www.toptal.com/developers/gitignore/api/dotenv
 Vision/PalletSizer/model/yolo11x.pt
 Vision/PalletSizer/model/yolo11x-seg.pt
+meeting.zip

@@ -7,7 +7,7 @@ import os
 
 
 class EmailSender:
-    def __init__(self, receiver_email="dawoo2140@naver.com"):
+    def __init__(self, receiver_email="dajung2140@gmail.com"):
         load_dotenv()
         self.sender_email = os.getenv("SENDER_EMAIL")
         self.password = os.getenv("EMAIL_APP_PW")
