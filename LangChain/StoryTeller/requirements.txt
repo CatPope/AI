@@ -1,0 +1,3 @@
+# StoryTeller 프로젝트 의존성 패키지
+
+langgraph==0.4.8

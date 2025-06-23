@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2423da40-320f-4b3c-b331-8d966cc080b0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../company_ask/.env.development" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../company_ask/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../company_ask/.idea/company_ask.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../company_ask/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../company_ask/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../company_ask/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../company_ask/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../company_ask/anaconda_projects/db/project_filebrowser.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../company_ask/doc/test/소나기 - 황순원.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../company_ask/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../company_ask/src/Openai.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../company_ask/src/custom_model.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../company_ask/src/mammoth_Langchain.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../company_ask/src/mammoth_Langchain.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/.idea/meeting.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/data/pdf/test_output.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/data/pdf/신입 온보딩 개선 및 환영 키트 도입 논의.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/data/pdf/신입 온보딩 체크리스트 및 키트 개선 논의.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/data/prompts/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/data/prompts/context_pmpt_ex.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/data/prompts/examples_tpl.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/data/prompts/summarys_pmpt.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/data/prompts/titles_pmpt.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/src/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/src/email_sender.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/src/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/src/meeting_stt.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/src/pdf_converter.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/src/summarizer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../meeting/src/title_writer.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2yRGl4xFhyTmIgTiubNlVH9ukUg" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/qwer/Documents/GitHub/AI/LangChain/recording_process&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-PY-251.23774.444" />
+        <option value="bundled-python-sdk-890ed5b35930-d9c5bdb153f4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.23774.444" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2423da40-320f-4b3c-b331-8d966cc080b0" name="Changes" comment="" />
+      <created>1749790120965</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1749790120965</updated>
+      <workItem from="1749790122398" duration="1203000" />
+      <workItem from="1749792982684" duration="1193000" />
+      <workItem from="1750051393151" duration="1000" />
+      <workItem from="1750223482334" duration="9000" />
+      <workItem from="1750393332575" duration="41000" />
+      <workItem from="1750400957721" duration="241000" />
+      <workItem from="1750403071360" duration="688000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/meeting$main.coverage" NAME="main Coverage Results" MODIFIED="1749790935330" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+  </component>
+</project>
