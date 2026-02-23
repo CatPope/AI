@@ -1,0 +1,65 @@
+    1  xeyes
+    2  clear
+    3  cd /mnt/c
+    4  ls
+    5  cd ..
+    6  ls
+    7  cd c
+    8  ls
+    9  cd
+   10  clear
+   11  mkdir ~/work
+   12  cd ~/work
+   13  git config --global user.name "Bard K. Roh"
+   14  git config --global user.email "bardroh@weable.ai"
+   15  git config --global --list
+   18  ssh-keygen
+   20  cat ~/.ssh/id_rsa
+   21  cat ~/.ssh/id_rsa.pub
+   22  git clone git@github.com:weable-kosa/kosa-rag-2026-1st.git
+   23  ls
+   24  cd kosa-rag-2026-1st/
+   25  ls
+   26  cd src
+   27  lcd
+   28  cd exercise/
+   29  ls
+   30  cd bardroh/
+   31  ls
+   32  cd day01/
+   33  ls
+   34  cat test.txt 
+   35  cd work/
+   36  ls
+   40  cd kosa-rag-2026-1st/
+   41  ls
+   42  cd src
+   43  cd exercise/
+   44  ls
+   45  cd bardroh/
+   46  ls
+   47  cd day01/
+   48  ls
+   49  vi test2.txt
+   50  ls
+   51  cat test2.txt 
+   52  rm test.txt 
+   53  ls
+   54  git checkout test.txt
+   55  ls
+   56  cat test.txt 
+   57  git pull
+   58  git add test2.txt 
+   59  git commit
+   60  ls
+   61  rm test2.txt 
+   62  ls
+   63  git checkout test2.txt
+   64  ls
+   65  git push
+   66  git pull
+   67  git config pull.rebase false
+   68  git pull
+   69  git push
+   70  history
+   71  history > h1.txt
