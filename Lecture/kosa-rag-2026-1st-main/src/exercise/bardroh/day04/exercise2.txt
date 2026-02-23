@@ -1,0 +1,1 @@
+실습 #1: RAGAS의 기본 metric 외 Hallucination Severity(환각 심각도), Conciseness (응답 간결성), Contradiction Detection (응답 모순 탐지)의 metric을 추가하여 RAG pipeline을 평가하는 어플리케이션을 작성하시오. Hallucination Severity는 Faithfulness를 사용하지 않고 계산하시오.

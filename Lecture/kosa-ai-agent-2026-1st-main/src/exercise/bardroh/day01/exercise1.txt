@@ -1,0 +1,1 @@
+실습 #1: pdf 답변 어플리케이션(Naive RAG)의 pre-retrieval, post-retrieval 기능을 추가하여 streamlit 기반으로 Advanced RAG을 구현하시오. (시간이 된다면) 왼쪽의 사이드바에 query rewrite 등 디버그 정보를 출력하시오.

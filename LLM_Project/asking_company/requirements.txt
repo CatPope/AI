@@ -1,0 +1,8 @@
+langchain-ollama==0.3.3
+langchain_community==0.3.24
+pypdf==5.5.0
+chromadb==1.0.10
+langchain-teddynote==0.3.45
+sentence-transformers==5.0.0
+langchain-huggingface==0.3.0
+faiss-cpu==1.11.0

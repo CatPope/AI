@@ -1,0 +1,1 @@
+실습 #2: busybox MCP 클라이언트에 streamlit 인터페이스를 붙이시오(멀티턴).
